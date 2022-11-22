@@ -32,6 +32,10 @@ Qualidade e Segurança).
 10. Obtenha quantidade total de determinado produto por armazém.
 11. Obtenha todos os lotes armazenados em um setor de um armazém ordenados por sua data de vencimento.
 12. Obtenha uma lista de lotes dentro do prazo de validade solicitado, que pertencem a uma determinada categoria*.
+13. Converter endereço em coordenadas para GoogleMaps.
+14. Converter coordenadas em endereço.
+15. Criar pedido de retirada.
+16. Atualizar a data de um pedido de retirada.
 
 *<em>Categorias: FS = Fresco; RF = Refrigerado; FF = Congelado</em>
 
@@ -53,6 +57,8 @@ Qualidade e Segurança).
 | Listar todos produtos de uma categoria |  ```/product/type/FS``` |
 | Lista produtos de um carrinho | ```/orders/1```|
 | Lista armazens que um produto está alocado | ```/warehouse?productId=1``` |
+| Converter endereço em coordenadas | ```/withdrawal/coordinate?address=R. Mato Grosso, 225 - Cornélio Procópio, PR, 86300-000``` |
+|Converter Coordenadas em endereço | ```/withdrawal/address?lat=37.4223878&lng=-122.0841877```|
 
 <br />
 
@@ -370,6 +376,21 @@ Para cadastrar um armazem: ```/warehouse```
 ```
 <br />
 
+Para criar um pedido de retirada: ```/withdrawal```
+
+<br />
+
+*Deve ser enviado no corpo da requisição um payload de acordo com o exemplo abaixo:*
+
+```
+{
+    "date": "2023-04-15T12:30:10",
+    "buyerId": 1,
+    "warehouseId": 1
+}
+```
+<br />
+
 ### PUT
 
 Para atualizar um pedido de entrada: ```/inboundorder/{id}```
@@ -420,6 +441,22 @@ Para atualizar um carrinho: ```/orders/{id}```
     "productId": 0,
     "quantity": 0
   }
+}
+```
+<br />
+
+Para atualizar um pedido de retirada: ```/withdrawal```
+
+<br />
+
+*Deve ser enviado no corpo da requisição um payload de acordo com o exemplo abaixo:*
+
+```
+{
+    "id": 1,
+    "date": "2023-04-15T12:30:10",
+    "buyerId": 1,
+    "warehouseId": 1
 }
 ```
 <br />
