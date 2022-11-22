@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -113,6 +114,16 @@ public class WithdrawalServiceTest {
 
         assertThrows(RuntimeException.class,() ->  {
             service.updateDate(withdrawalOrderDTO);
+        });
+    }
+
+    @Test
+    public void checkDistanceWarehouse_whenDontHaveWarehouse_returnsNotFoundException() {
+        when(warehouseService.getAll())
+                .thenReturn(new ArrayList<>());
+
+        assertThrows(RuntimeException.class,() ->  {
+            service.checkDistanceWarehouse("");
         });
     }
 
