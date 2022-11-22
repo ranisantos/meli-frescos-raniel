@@ -17,4 +17,7 @@ public class WarehouseRequestDTO {
 
     @NotNull(message = "O representante é obrigatório.")
     private Long representativeId;
+
+    @NotBlank(message = "O endereço é obrigatório.")
+    private String address;
 }

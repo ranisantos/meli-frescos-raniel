@@ -25,6 +25,9 @@ public class Warehouse {
     @Column(length = 45, nullable = false)
     private String name;
 
+    @Column(length = 120, nullable = false)
+    private String address;
+
     @OneToOne
     @JoinColumn(name = "idRepresentative")
     @JsonIgnoreProperties("warehouse")
@@ -33,4 +36,9 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse")
     @JsonIgnoreProperties("warehouse")
     private List<Sector> sectors;
+
+
+    @OneToMany(mappedBy = "warehouse")
+    @JsonIgnoreProperties("warehouse")
+    private List<WithdrawalOrder> withdrawalOrder;
 }

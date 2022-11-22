@@ -29,7 +29,14 @@ public class Buyer {
     @Column(length = 45, nullable = false, unique = true)
     private String email;
 
+    @Column(length = 120, nullable = false)
+    private String address;
+
     @OneToMany(mappedBy = "buyer")
     @JsonIgnoreProperties("buyer")
     private List<PurchaseOrder> purchaseOrders;
+
+    @OneToMany(mappedBy = "buyer")
+    @JsonIgnoreProperties("buyer")
+    private List<WithdrawalOrder> withdrawalOrder;
 }

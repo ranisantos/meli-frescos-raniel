@@ -36,7 +36,7 @@ public class WarehouseService implements IWarehouseService {
             throw new NotFoundException("Representante não encontrado");
         }
 
-        Warehouse warehouse = new Warehouse(null, warehouseRequestDTO.getName(), representative.get(), null);
+        Warehouse warehouse = new Warehouse(null, warehouseRequestDTO.getName(),warehouseRequestDTO.getAddress() , representative.get(), null, null);
 
         return repo.save(warehouse);
     }
