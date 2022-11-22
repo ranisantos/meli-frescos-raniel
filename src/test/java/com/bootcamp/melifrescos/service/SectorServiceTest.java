@@ -42,8 +42,8 @@ public class SectorServiceTest {
     @BeforeEach
     public void setup() {
         Representative representative = new Representative(1L, "Ana Oliveira Reis", "ana.reis@hotmail.com", "90142253790", null);
-        WarehouseRequestDTO warehouseRequestDTO = new WarehouseRequestDTO("meli-ce1", 1L);
-        warehouse = new Warehouse(1L, warehouseRequestDTO.getName(), representative, null);
+        WarehouseRequestDTO warehouseRequestDTO = new WarehouseRequestDTO("meli-ce1",  1L, "");
+        warehouse = new Warehouse(1L, warehouseRequestDTO.getName(), "", representative, null, null);
         sectorRequestDTO = new SectorRequestDTO("meli-ref-01", 120.0, Type.REFRIGERATED.toString(), 1L);
         sector = new Sector(1L, sectorRequestDTO.getName(), sectorRequestDTO.getCapacity(), Type.fromValue(sectorRequestDTO.getType()), warehouse, null);
     }

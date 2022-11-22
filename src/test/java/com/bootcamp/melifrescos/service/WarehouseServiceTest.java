@@ -46,8 +46,8 @@ public class WarehouseServiceTest {
     @BeforeEach
     public void setup() {
         representative = new Representative(1L, "Ana Oliveira Reis", "ana.reis@hotmail.com", "90142253790", null);
-        warehouseRequestDTO = new WarehouseRequestDTO("meli-ce1", 1L);
-        warehouse = new Warehouse(1L, warehouseRequestDTO.getName(), representative, null);
+        warehouseRequestDTO = new WarehouseRequestDTO("meli-ce1", 1L, "");
+        warehouse = new Warehouse(1L, warehouseRequestDTO.getName(), "", representative, null, null);
         warehouseStock = new WarehouseStockDTO(1L, "250");
         warehouses.add(warehouseStock);
         productStock = new ProductStockDTO(1L, warehouses);
