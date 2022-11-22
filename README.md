@@ -36,6 +36,7 @@ Qualidade e Segurança).
 14. Converter coordenadas em endereço.
 15. Criar pedido de retirada.
 16. Atualizar a data de um pedido de retirada.
+17. Retorna a distancia do endereço informado dos armazens cadastrados.
 
 *<em>Categorias: FS = Fresco; RF = Refrigerado; FF = Congelado</em>
 
@@ -59,6 +60,7 @@ Qualidade e Segurança).
 | Lista armazens que um produto está alocado | ```/warehouse?productId=1``` |
 | Converter endereço em coordenadas | ```/withdrawal/coordinate?address=R. Mato Grosso, 225 - Cornélio Procópio, PR, 86300-000``` |
 |Converter Coordenadas em endereço | ```/withdrawal/address?lat=37.4223878&lng=-122.0841877```|
+|Busca a distancia do endereço informado em relaçao aos armazens|```/withdrawal/check-distance?address=R. Mato Grosso, 225 - Cornélio Procópio, PR, 86300-000``` |
 
 <br />
 
