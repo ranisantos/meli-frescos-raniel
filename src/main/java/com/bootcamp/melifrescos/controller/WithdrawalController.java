@@ -4,6 +4,8 @@ import com.bootcamp.melifrescos.dto.WithdrawalOrderDTO;
 import com.bootcamp.melifrescos.interfaces.IWithdrawalService;
 import com.bootcamp.melifrescos.model.WithdrawalOrder;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.DistanceMatrix;
+import com.google.maps.model.DistanceMatrixRow;
 import com.google.maps.model.LatLng;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,5 +40,10 @@ public class WithdrawalController {
     @PutMapping
     public ResponseEntity<WithdrawalOrderDTO> updateDate(@RequestBody WithdrawalOrderDTO withdrawalOrder){
         return new ResponseEntity<>(service.updateDate(withdrawalOrder), HttpStatus.OK);
+    }
+
+    @GetMapping("/check-distance")
+    public ResponseEntity<DistanceMatrix> checkWarehouseDistance(@RequestParam String address) throws IOException, InterruptedException, ApiException {
+        return new ResponseEntity<>(service.checkDistanceWarehouse(address), HttpStatus.OK);
     }
 }

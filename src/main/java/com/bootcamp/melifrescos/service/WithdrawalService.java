@@ -9,15 +9,20 @@ import com.bootcamp.melifrescos.model.Buyer;
 import com.bootcamp.melifrescos.model.Warehouse;
 import com.bootcamp.melifrescos.model.WithdrawalOrder;
 import com.bootcamp.melifrescos.repository.IWithdrawalRepo;
+import com.google.maps.DistanceMatrixApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.DistanceMatrix;
+import com.google.maps.model.DistanceMatrixRow;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -105,5 +110,28 @@ public class WithdrawalService implements IWithdrawalService {
         repo.save(result.get());
 
         return withdrawalOrder;
+    }
+
+    @Override
+    public DistanceMatrix checkDistanceWarehouse(String address) throws IOException, InterruptedException, ApiException {
+        String[] origins = {address};
+
+        List<Warehouse> warehouseList = warehouseService.getAll();
+
+        if (warehouseList.isEmpty()){
+            throw new NotFoundException("Nenhum armazém encontrado");
+        }
+
+        List<String> warehouseAddress = new ArrayList<>();
+
+        warehouseList.forEach(warehouse -> {
+            warehouseAddress.add(warehouse.getAddress());
+        });
+
+        String[] destinations = warehouseAddress.toArray(String[]::new);
+
+        DistanceMatrix results =  DistanceMatrixApi.getDistanceMatrix(context, origins, destinations).await();
+
+       return results;
     }
 }

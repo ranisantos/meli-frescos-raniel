@@ -61,4 +61,9 @@ public class WarehouseService implements IWarehouseService {
 
         return new ProductStockDTO(productId, warehouseStockList);
     }
+
+    @Override
+    public List<Warehouse> getAll() {
+        return repo.findAll();
+    }
 }
